@@ -1,0 +1,27 @@
+{
+  "id" : "anID",
+  "title" : "a title",
+  "description" : "a description",
+  "keywords" : [
+    "word",
+    "a phrase"
+  ],
+  "extent" : {
+    "spatial" : "a spatial ext",
+    "temporal" : "a temporal ext"
+  },
+  "parameter_names" : {
+    "temperature" : {
+      "type" : "Parameter",
+      "description" : "the temperature",
+      "unit" : "degree_K",
+      "observedProperty" : "temperature (obsProp)"
+      },
+      "pressure" : {
+        "type" : "Parameter - b",
+        "description" : "b param desc",
+        "unit" : "b param unit",
+        "observedProperty" : "b param obsProp"
+    }
+  }
+}

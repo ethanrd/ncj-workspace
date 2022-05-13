@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'edu.ucar.unidata'
+version '1.0-SNAPSHOT'
+
+ext {
+    netcdfJavaVersion = '5.5.1'
+    jacksonVersion = '2.13.2'
+    javaxValidationVersion = '2.0.1.Final'
+
+    slf4jVersion = '1.7.32'
+    junitVersion = '5.7.2'
+}
+
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://artifacts.unidata.ucar.edu/repository/unidata-all/"
+    }
+
+}
+
+dependencies {
+    implementation "edu.ucar:cdm-core:${netcdfJavaVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "javax.validation:validation-api:${javaxValidationVersion}"
+    runtimeOnly "org.slf4j:slf4j-jdk14:${slf4jVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}

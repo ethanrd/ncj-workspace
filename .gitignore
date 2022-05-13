@@ -1,0 +1,14 @@
+#
+*~
+\#*#
+.#*
+
+# IntelliJ IDEA project files
+.idea/
+
+# gradle stuff
+.gradle/
+
+# Ignore the output that Gradle generates in the "build/" directories...
+build/
+

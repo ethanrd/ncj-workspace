@@ -1,0 +1,14 @@
+{
+  "id" : "anID",
+  "keywords" : [ "word", "a phrase" ],
+  "extent" : {
+    "spatial" : "a spatial ext",
+    "temporal" : "a temporal ext"
+  },
+  "parameter_names" : {
+    "temp" : {
+      "type" : "Parameter",
+      "observedProperty" : "temperature"
+    }
+  }
+}
