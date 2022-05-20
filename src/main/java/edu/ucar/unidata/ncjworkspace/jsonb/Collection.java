@@ -41,6 +41,7 @@ public class Collection {
   public Map<String,Parameter> getParameterNames() { return this.parameterNames; }
 
   private Collection( Builder builder ) {
+    Formatter validationLog = new Formatter();
     this.id = builder.id;
     this.title = builder.title;
     this.description = builder.description;
@@ -49,7 +50,7 @@ public class Collection {
 
     ImmutableMap.Builder<String,Parameter> mapBuilder = ImmutableMap.<String,Parameter>builder();
     for (String key : builder.parameterNamesBuilder.keySet()) {
-      mapBuilder.put(key, builder.parameterNamesBuilder.get(key).build());
+      mapBuilder.put(key, builder.parameterNamesBuilder.get(key).build(validationLog));
     }
     this.parameterNames = mapBuilder.build();
   }
@@ -123,12 +124,9 @@ public class Collection {
     }
 
     private boolean validateCollectionID( String id, Formatter validationLog) {
-      if (id == null )
-        validationLog.format("Collection must have an ID.");
-      else if (! id.isBlank())
-        validationLog.format("Collection must have an ID.");
-      else
+      if (id != null && ! id.isBlank() )
         return true;
+      validationLog.format("Collection must have an ID.");
       return false;
     }
 

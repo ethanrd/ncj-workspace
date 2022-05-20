@@ -95,7 +95,7 @@ public class CollectionTest {
     ExtentSpatial.Builder extentSpatialBuilder = new ExtentSpatial.Builder().withBbox("0,0,1,1").withCrs("WGS84");
     Extent.Builder extentBuilder = new Extent.Builder().withSpatial( extentSpatialBuilder ).withTemporal("a temporal ext");
     Map<String,Parameter.Builder> parameterNamesWithBuilders = new java.util.HashMap<String, Parameter.Builder>();
-    Parameter.Builder parameterBuilder = new Parameter.Builder("Parameter", "temperature");
+    Parameter.Builder parameterBuilder = new Parameter.Builder();//"Parameter", "temperature");
     parameterNamesWithBuilders.put( "temp", parameterBuilder);
     Collection.Builder collectionBuilder = new Collection.Builder().withId("anID").withExtent(extentBuilder).withParameterNames(parameterNamesWithBuilders);
     List<String> keywords = new ArrayList<>();
