@@ -29,7 +29,7 @@ public class ParameterTest {
         + "}";
     Parameter parameter = new ObjectMapper().readValue(json, Parameter.class);
 
-    assertTrue(parameter.isValid(), "Parameter not valid.");
+    assertTrue( parameter.isValid(), parameter.getValidationLog());
     assertEquals("a param type", parameter.getType());
     assertEquals("a param desc", parameter.getDescription());
     assertEquals( "a param unit", parameter.getUnit());
@@ -45,12 +45,13 @@ public class ParameterTest {
         + "}";
     Parameter parameter = new ObjectMapper().readValue(json, Parameter.class);
 
-    assertFalse( parameter.isValid(), "Invalid parameter mistakenly validated.");
-
     assertEquals("a param type", parameter.getType());
     assertEquals("a param desc", parameter.getDescription());
     assertEquals( "a param unit", parameter.getUnit());
     assertNull(parameter.getObservedProperty());
+
+    assertFalse( parameter.isValid(), "Invalid parameter mistakenly validated: " + parameter.getValidationLog());
+    System.out.println(parameter.getValidationLog());
   }
 
   @Test
@@ -62,12 +63,14 @@ public class ParameterTest {
         + "  \"observedProperty\" : \"\""
         + "}";
     Parameter parameter = new ObjectMapper().readValue(json, Parameter.class);
-    assertFalse( parameter.isValid(), "Invalid parameter mistakenly validated.");
 
     assertEquals("a param type", parameter.getType());
     assertEquals("a param desc", parameter.getDescription());
     assertEquals( "a param unit", parameter.getUnit());
     String op = parameter.getObservedProperty();
     assertTrue(op.isBlank(), String.format("Blank obs prop isn't: %s", op));
+
+    assertFalse( parameter.isValid(), "Invalid parameter mistakenly validated:" + parameter.getValidationLog());
+    System.out.println(parameter.getValidationLog());
   }
 }

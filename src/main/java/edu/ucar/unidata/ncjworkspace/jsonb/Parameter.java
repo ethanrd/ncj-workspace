@@ -84,8 +84,9 @@ public class Parameter {
       return this.build(new Formatter());
     }
 
-    public Parameter build(@Nonnull Formatter validationLog) {
-      Parameter parameter = new Parameter( this, isValidParameterBuilder(this, validationLog), validationLog);
+    Parameter build(@Nonnull Formatter validationLog) {
+      boolean isValid = isValidParameterBuilder(this, validationLog);
+      Parameter parameter = new Parameter( this, isValid, validationLog);
       return parameter;
     }
 
@@ -100,17 +101,17 @@ public class Parameter {
       return false;
     }
 
-    private boolean isValidParameterType( String type, Formatter validationLog) {
+    private boolean isValidParameterType( String type,  @Nonnull Formatter validationLog) {
       if (type != null && ! type.isBlank() )
         return true;
-      validationLog.format("Parameter must have a type.");
+      validationLog.format("Parameter must have a 'type'.");
       return false;
     }
 
-    private boolean isValidParameterObsProp( String type, Formatter validationLog) {
-      if (type != null && ! type.isBlank() )
+    private boolean isValidParameterObsProp( String observedProperty, @Nonnull Formatter validationLog) {
+      if (observedProperty != null && ! observedProperty.isBlank() )
         return true;
-      validationLog.format("Parameter must have a type.");
+      validationLog.format("Parameter must have an 'observedProperty'.");
       return false;
     }
   }
